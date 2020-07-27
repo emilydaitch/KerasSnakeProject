@@ -130,6 +130,8 @@ class GameClass:
                 return (9 - snake.head[1])        
 
     def gameLoop():
+        list = ['right', 'straight', 'straight', 'up', 'straight', 'straight', 'left', 'straight', 'straight', 'down', 'straight', 'straight']
+        counter = 0
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -143,7 +145,20 @@ class GameClass:
                 GameClass.setNewGameState()
             if(not snake.gameOver):
                 GameClass.distanceToFood() # TODO use threads
-
+                print(list[counter]);
+                if list[counter] == 'left':
+                    GameClass.leftKey()
+                elif list[counter] == 'right':
+                    GameClass.rightKey()
+                elif list[counter] == 'up':
+                    GameClass.upKey()
+                elif list[counter] == 'down':
+                    GameClass.downKey()
+                    
+                counter = counter + 1
+                if counter == 12:
+                    counter = 0
+                
                 if keyinput[pygame.K_LEFT] or keyinput[pygame.K_a]:
                     GameClass.leftKey()
                 elif keyinput[pygame.K_RIGHT] or keyinput[pygame.K_d]:
